@@ -6,14 +6,14 @@
   
   <title>วัดวังตะแบกโภคาราม</title>  
   
-  <!-- Favicon ที่คุณต้องการเพิ่ม --><link rel="icon" href="https://lh7-rt.googleusercontent.com/sitesz/AClOY7rsyi34IyVp2poHtSg0XBH3VB9PdrqLJej9P2Riu-JxYLuBhv6cm0GoKfW0BriHjQ9mlQYDKhhhD85e0TMSzL2QvPEEWjZb4MFfnc7OB3pCDhlteHAN8HoJhBO7gcvBFDNr9AkjgYhCX4E4aVxhprtZ2OaXbAIsrd1mgrTxCGbwOPTthdw?key=JM-XNgSVv6ay9DoBtCRKnXch" type="image/png">
+  <link rel="icon" href="https://lh7-rt.googleusercontent.com/sitesz/AClOY7rsyi34IyVp2poHtSg0XBH3VB9PdrqLJej9P2Riu-JxYLuBhv6cm0GoKfW0BriHjQ9mlQYDKhhhD85e0TMSzL2QvPEEWjZb4MFfnc7OB3pCDhlteHAN8HoJhBO7gcvBFDNr9AkjgYhCX4E4aVxhprtZ2OaXbAIsrd1mgrTxCGbwOPTthdw?key=JM-XNgSVv6ay9DoBtCRKnXch" type="image/png">
   
   <style>
     html,body{height:100%;margin:0}
     .frame{width:100%;height:100%;border:0}
     .wrap{height:100%;display:grid;place-items:center;background:#f7f7fb}
-    .card{max-width:720px;background:#fff;padding:20px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08); text-align: center;} /* เพิ่ม text-align: center เพื่อจัดโลโก้ให้อยู่กึ่งกลาง */
-    .row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap; justify-content: center;} /* เพิ่ม justify-content: center เพื่อจัดปุ่มให้อยู่กึ่งกลางหากมี */
+    .card{max-width:720px;background:#fff;padding:20px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap; justify-content: center;}
     .hidden{display:none}
     .btn{padding:10px 14px;border:1px solid #ddd;border-radius:10px;background:#fff;cursor:pointer}
     .btn:hover{background:#f3f3f3}
@@ -21,26 +21,18 @@
 
     /* Style สำหรับโลโก้ตรงกลาง */
     .loading-logo {
-      width: 120px; /* เพิ่มขนาดโลโก้ให้ใหญ่ขึ้น */
+      width: 120px; 
       height: 120px;
-      margin: 0 auto 20px auto; /* จัดกึ่งกลางและเพิ่มระยะห่างด้านล่าง */
       border-radius: 50%;
       display: block;
-      animation: spin 2s linear infinite; /* เพิ่ม animation หมุน */
+      /* ลบ animation และ margin ที่ไม่จำเป็นออก */
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
   </style>
 </head>
 <body>
   <div id="loading" class="wrap">
-    <div class="card">
-      <!-- โลโก้ที่ใช้แสดงแทนข้อความ "กำลังโหลดแอป..." และปุ่ม "ลองโหลดอีกครั้ง" --><img src="https://lh7-rt.googleusercontent.com/sitesz/AClOY7rsyi34IyVp2poHtSg0XBH3VB9PdrqLJej9P2Riu-JxYLuBhv6cm0GoKfW0BriHjQ9mlQYDKhhhD85e0TMSzL2QvPEEWjZb4MFfnc7OB3pCDhlteHAN8HoJhBO7gcvBFDNr9AkjgYhCX4E4aVxhprtZ2OaXbAIsrd1mgrTxCGbwOPTthdw?key=JM-XNgSVv6ay9DoBtCRKnXch" alt="Loading Logo" class="loading-logo">
-      
-      <!-- ข้อความและปุ่ม "ลองโหลดอีกครั้ง" ถูกลบออกไปแล้วตามที่คุณขอ --><!-- คุณสามารถเพิ่มข้อความสถานะเล็กๆ ใต้โลโก้ได้ ถ้าต้องการ --><!-- <div class="muted">กรุณารอสักครู่...</div> --></div>
+    <img src="https://lh7-rt.googleusercontent.com/sitesz/AClOY7rsyi34IyVp2poHtSg0XBH3VB9PdrqLJej9P2Riu-JxYLuBhv6cm0GoKfW0BriHjQ9mlQYDKhhhD85e0TMSzL2QvPEEWjZb4MFfnc7OB3pCDhlteHAN8HoJhBO7gcvBFDNr9AkjgYhCX4E4aVxhprtZ2OaXbAIsrd1mgrTxCGbwOPTthdw?key=JM-XNgSVv6ay9DoBtCRKnXch" alt="Loading Logo" class="loading-logo">
   </div>
 
   <iframe id="app" class="frame hidden" referrerpolicy="no-referrer"></iframe>
@@ -66,18 +58,19 @@
     const loading = document.getElementById('loading');
     const iframe  = document.getElementById('app');
     const openBtn = document.getElementById('openNewTab'); 
-    const retryBtn= document.getElementById('retry'); // ตัวแปรนี้ยังคงอยู่ แต่ปุ่มถูกลบไปแล้ว
+    const retryBtn= document.getElementById('retry'); 
 
-    // 3) สองปุ่มช่วยเหลือ (ตอนนี้เหลือแต่ logic ของปุ่ม OpenNewTab ที่ไม่มีปุ่มแล้ว)
+    // 3) สองปุ่มช่วยเหลือ
     if (openBtn) {
       openBtn.onclick = () => { if (apps) window.open(apps, '_blank'); };
     }
-    // retryBtn.onclick = () => location.reload(); // ลบ logic ของปุ่ม "ลองโหลดอีกครั้ง" ออกไปแล้ว
+    // ไม่มีปุ่ม retry แล้ว ไม่ต้องใส่ onclick
 
     // 4) ถ้าไม่มีพารามิเตอร์ หรือ URL ไม่ผ่านเงื่อนไข -> แจ้งข้อความ
     if (!apps || !isSafeGAS(apps)) {
+      // ส่วนนี้ยังคงใช้ .card เพื่อให้ข้อความ error มีกรอบพื้นหลังสีขาว
       loading.innerHTML = `
-        <div class="card" style="text-align: left;">
+        <div class="card"> 
           <h2 style="margin:0 0 8px">ใช้งานไม่ได้</h2>
           <div>กรุณาระบุพารามิเตอร์ <code>?apps=</code> เป็น URL ของ GAS Web App ที่ลงท้ายด้วย <code>/exec</code></div>
           <div style="margin-top:10px" class="muted">ตัวอย่าง: ?apps=https://script.google.com/macros/s/AKfycb.../exec</div>
