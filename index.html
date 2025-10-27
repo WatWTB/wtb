@@ -21,11 +21,10 @@
 
     /* Style สำหรับโลโก้ตรงกลาง */
     .loading-logo {
-      width: 120px; 
-      height: 120px;
+      width: 200px; /* ปรับขนาดให้ใหญ่ขึ้น */
+      height: 200px; /* ปรับขนาดให้ใหญ่ขึ้น */
       border-radius: 50%;
       display: block;
-      /* ลบ animation และ margin ที่ไม่จำเป็นออก */
     }
 
   </style>
@@ -64,11 +63,9 @@
     if (openBtn) {
       openBtn.onclick = () => { if (apps) window.open(apps, '_blank'); };
     }
-    // ไม่มีปุ่ม retry แล้ว ไม่ต้องใส่ onclick
 
     // 4) ถ้าไม่มีพารามิเตอร์ หรือ URL ไม่ผ่านเงื่อนไข -> แจ้งข้อความ
     if (!apps || !isSafeGAS(apps)) {
-      // ส่วนนี้ยังคงใช้ .card เพื่อให้ข้อความ error มีกรอบพื้นหลังสีขาว
       loading.innerHTML = `
         <div class="card"> 
           <h2 style="margin:0 0 8px">ใช้งานไม่ได้</h2>
